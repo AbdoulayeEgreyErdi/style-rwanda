@@ -36,7 +36,7 @@ function calculateShipping($subtotal) {
     return $subtotal >= 100000 ? 0 : 2000;
 }
 
-// FIX #2: Order Number Generation with uniqueness check
+// ========== ORDER NUMBER GENERATION ==========
 function generateOrderNumber() {
     global $pdo;
     do {
@@ -47,7 +47,7 @@ function generateOrderNumber() {
     return $order_number;
 }
 
-// FIX #3: Cart persistence for logged-in users
+// ========== CART PERSISTENCE ==========
 function saveCartToDatabase($user_id, $cart) {
     global $pdo;
     $pdo->prepare("DELETE FROM saved_carts WHERE user_id = ?")->execute([$user_id]);
@@ -74,7 +74,7 @@ function formatDate($date, $format = 'M d, Y') {
     return date($format, strtotime($date));
 }
 
-// ========== PRODUCT FUNCTIONS ==========
+// ========== PRODUCT FUNCTIONS (SQLite Compatible) ==========
 function getProducts($filters = [], $limit = null, $offset = 0) {
     global $pdo;
     
@@ -85,9 +85,9 @@ function getProducts($filters = [], $limit = null, $offset = 0) {
         $sql .= " AND is_featured = 1";
     }
     
-    // FIX #4: Date-based new arrivals (last 30 days OR manually marked)
+    // SQLite compatible date filtering (FIXED)
     if (isset($filters['new']) && $filters['new']) {
-        $sql .= " AND (is_new = 1 OR created_at > DATE_SUB(NOW(), INTERVAL 30 DAY))";
+        $sql .= " AND (is_new = 1 OR datetime(created_at) > datetime('now', '-30 days'))";
     }
     
     if (isset($filters['category']) && $filters['category']) {
@@ -147,7 +147,7 @@ function updateProductStock($product_id, $quantity) {
     return $stmt->execute([$quantity, $product_id, $quantity]);
 }
 
-// ========== ORDER FUNCTIONS (ADD THESE) ==========
+// ========== ORDER FUNCTIONS ==========
 function getOrderById($id) {
     global $pdo;
     $stmt = $pdo->prepare("SELECT * FROM orders WHERE id = ?");
