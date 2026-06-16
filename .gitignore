@@ -1,0 +1,59 @@
+# Style Rwanda .gitignore
+
+# PHP errors and logs
+*.log
+error_log
+php_errors.log
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.classpath
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Environment files
+.env
+.env.local
+.env.production
+
+# Database backups
+*.sql
+*.bak
+*.backup
+
+# Uploaded files
+assets/images/uploads/
+assets/images/cache/
+uploads/
+
+# Temporary files
+tmp/
+temp/
+cache/
+*.tmp
+
+# Composer (if used later)
+vendor/
+composer.lock
+composer.phar
+
+# Node modules (if used later)
+node_modules/
+package-lock.json
+npm-debug.log
+
+# Build files
+dist/
+build/
+
+# Testing
+coverage/
+test-reports/

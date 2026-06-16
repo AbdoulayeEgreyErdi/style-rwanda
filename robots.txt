@@ -1,0 +1,13 @@
+# robots.txt for Style Rwanda
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+Disallow: /checkout.php
+Disallow: /cart.php
+Disallow: /order-confirmation.php
+Disallow: /test-db.php
+Disallow: /full-test.php
+Disallow: /server-info.php
+
+Sitemap: http://localhost:8081/style-rwanda/sitemap.xml

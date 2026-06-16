@@ -1,0 +1,41 @@
+# Style Rwanda .gitignore
+
+# PHP errors and logs
+*.log
+error_log
+php_errors.log
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Environment files
+.env
+.env.local
+.env.production
+
+# Database backups
+*.sql
+*.bak
+*.backup
+
+# Uploaded images
+assets/images/products/
+assets/images/uploads/
+uploads/
+
+# Temporary files
+tmp/
+temp/
+cache/
+*.tmp
+
+# PHPMailer (already in project)
+phpmailer/
