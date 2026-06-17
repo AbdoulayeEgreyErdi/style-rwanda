@@ -171,15 +171,15 @@ $image_side = str_replace('.' . $image_parts['extension'], '_side.' . $image_par
 <body>
     <nav class="navbar">
         <div class="nav-container">
-            <div class="nav-logo"><a href="/style-rwanda/">Style Rwanda</a></div>
+            <div class="nav-logo"><a href="/">Style Rwanda</a></div>
             <div class="nav-toggle" id="navToggle"><i class="fas fa-bars"></i></div>
             <ul class="nav-menu" id="navMenu">
-                <li><a href="/style-rwanda/">Home</a></li>
-                <li><a href="/style-rwanda/shop.php">Shop</a></li>
-                <li><a href="/style-rwanda/shop.php?new=1">New Arrivals</a></li>
-                <li><a href="/style-rwanda/contact.php">Contact</a></li>
-                <li><a href="/style-rwanda/account.php"><i class="fas fa-user"></i> Account</a></li>
-                <li class="cart-link"><a href="/style-rwanda/cart.php"><i class="fas fa-shopping-cart"></i><span class="cart-count" id="cartCount"><?php echo getCartCount(); ?></span></a></li>
+                <li><a href="/">Home</a></li>
+                <li><a href="/shop.php">Shop</a></li>
+                <li><a href="/shop.php?new=1">New Arrivals</a></li>
+                <li><a href="/contact.php">Contact</a></li>
+                <li><a href="/account.php"><i class="fas fa-user"></i> Account</a></li>
+                <li class="cart-link"><a href="/cart.php"><i class="fas fa-shopping-cart"></i><span class="cart-count" id="cartCount"><?php echo getCartCount(); ?></span></a></li>
             </ul>
         </div>
     </nav>
@@ -282,7 +282,6 @@ $image_side = str_replace('.' . $image_parts['extension'], '_side.' . $image_par
         
         function changeImage(src) {
             document.getElementById('mainProductImage').src = src;
-            // Update active thumbnail
             document.querySelectorAll('.thumbnail').forEach(thumb => {
                 thumb.classList.remove('active');
                 if (thumb.src === src) {
@@ -349,7 +348,7 @@ $image_side = str_replace('.' . $image_parts['extension'], '_side.' . $image_par
             }
         }
         
-        // Add to cart
+        // ========== FIXED: Add to Cart ==========
         document.getElementById('addToCartBtn')?.addEventListener('click', async function() {
             const productId = this.dataset.id;
             const quantity = parseInt(document.getElementById('quantity').value);
@@ -373,9 +372,12 @@ $image_side = str_replace('.' . $image_parts['extension'], '_side.' . $image_par
             addBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Adding...';
             
             try {
-                const response = await fetch('/style-rwanda/api/cart-add.php', {
+                // ✅ FIXED: Removed /style-rwanda/ from URL
+                const response = await fetch('/api/cart-add.php', {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
                     body: JSON.stringify({
                         product_id: productId,
                         quantity: quantity,
@@ -389,6 +391,7 @@ $image_side = str_replace('.' . $image_parts['extension'], '_side.' . $image_par
                 if (data.success) {
                     showToast(data.message || 'Product added to cart!', 'success');
                     updateCartCount(data.cart_count);
+                    
                     // Animate cart icon
                     const cartIcon = document.querySelector('.cart-link');
                     if (cartIcon) {
@@ -399,6 +402,7 @@ $image_side = str_replace('.' . $image_parts['extension'], '_side.' . $image_par
                     showToast(data.error || 'Failed to add to cart', 'error');
                 }
             } catch (error) {
+                console.error('Error:', error);
                 showToast('Network error. Please try again.', 'error');
             } finally {
                 addBtn.disabled = false;
