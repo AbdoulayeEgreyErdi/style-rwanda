@@ -4,9 +4,6 @@ require_once '../includes/config.php';
 require_once '../includes/db.php';
 require_once '../includes/functions.php';
 
-// Load email functions
-require_once '../includes/email_simple.php';
-
 header('Content-Type: application/json');
 
 // Get POST data
@@ -22,9 +19,6 @@ if (empty($_SESSION['cart'])) {
     exit;
 }
 
-// Save cart items for email
-$cart_items_for_email = $_SESSION['cart'];
-
 // Validate required fields
 $required = ['name', 'phone', 'email', 'address', 'city', 'payment_method'];
 foreach ($required as $field) {
@@ -35,7 +29,7 @@ foreach ($required as $field) {
 }
 
 // Verify stock
-foreach ($cart_items_for_email as $item) {
+foreach ($_SESSION['cart'] as $item) {
     $stmt = $pdo->prepare("SELECT stock, name FROM products WHERE id = ?");
     $stmt->execute([$item['product_id']]);
     $product = $stmt->fetch();
@@ -72,7 +66,7 @@ try {
     $order_id = $pdo->lastInsertId();
     
     // Create order items and update stock
-    foreach ($cart_items_for_email as $item) {
+    foreach ($_SESSION['cart'] as $item) {
         $stmt = $pdo->prepare("INSERT INTO order_items (order_id, product_id, product_name, product_price, quantity, size, color) VALUES (?, ?, ?, ?, ?, ?, ?)");
         $stmt->execute([$order_id, $item['product_id'], $item['name'], $item['price'], $item['quantity'], $item['size'], $item['color']]);
         
@@ -85,46 +79,6 @@ try {
     
     // Clear cart
     unset($_SESSION['cart']);
-    
-    // ========== SEND ORDER CONFIRMATION EMAIL ==========
-    try {
-        // Build order data for email
-        $order_data = [
-            'order_number' => $order_number,
-            'total_amount' => $total,
-            'shipping_cost' => $shipping,
-            'payment_method' => $payment_method,
-            'delivery_address' => $delivery_address,
-            'city' => $city,
-            'created_at' => date('Y-m-d H:i:s')
-        ];
-        
-        // Build order items for email
-        $order_items_for_email = [];
-        foreach ($cart_items_for_email as $item) {
-            $order_items_for_email[] = [
-                'name' => $item['name'],
-                'price' => $item['price'],
-                'quantity' => $item['quantity']
-            ];
-        }
-        
-        // Send email
-        if (function_exists('sendOrderConfirmationEmail')) {
-            $email_sent = sendOrderConfirmationEmail($order_data, $order_items_for_email, $customer_email, $customer_name);
-            if ($email_sent) {
-                error_log("✅ Order confirmation email sent to: " . $customer_email);
-            } else {
-                error_log("❌ Failed to send order confirmation email to: " . $customer_email);
-            }
-        } else {
-            error_log("❌ sendOrderConfirmationEmail function not found!");
-        }
-        
-    } catch (Exception $e) {
-        // Don't break checkout if email fails
-        error_log("Email error: " . $e->getMessage());
-    }
     
     echo json_encode(['success' => true, 'order_id' => $order_id, 'order_number' => $order_number]);
     
