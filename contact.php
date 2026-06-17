@@ -216,15 +216,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
     <nav class="navbar">
         <div class="nav-container">
-            <div class="nav-logo"><a href="/style-rwanda/">Style Rwanda</a></div>
+            <div class="nav-logo"><a href="/">Style Rwanda</a></div>
             <div class="nav-toggle" id="navToggle"><i class="fas fa-bars"></i></div>
             <ul class="nav-menu" id="navMenu">
-                <li><a href="/style-rwanda/">Home</a></li>
-                <li><a href="/style-rwanda/shop.php">Shop</a></li>
-                <li><a href="/style-rwanda/shop.php?new=1">New Arrivals</a></li>
-                <li><a href="/style-rwanda/contact.php">Contact</a></li>
-                <li><a href="/style-rwanda/account.php"><i class="fas fa-user"></i> Account</a></li>
-                <li class="cart-link"><a href="/style-rwanda/cart.php"><i class="fas fa-shopping-cart"></i><span class="cart-count"><?php echo getCartCount(); ?></span></a></li>
+                <li><a href="/">Home</a></li>
+                <li><a href="/shop.php">Shop</a></li>
+                <li><a href="/shop.php?new=1">New Arrivals</a></li>
+                <li><a href="/contact.php">Contact</a></li>
+                <li><a href="/account.php"><i class="fas fa-user"></i> Account</a></li>
+                <li class="cart-link"><a href="/cart.php"><i class="fas fa-shopping-cart"></i><span class="cart-count"><?php echo getCartCount(); ?></span></a></li>
             </ul>
         </div>
     </nav>
@@ -260,7 +260,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </div>
                     <div class="form-group">
                         <label>Message *</label>
-                        <textarea name="message" rows="5" required></textarea>
+                        <textarea name="message" rows="5" required>
                     </div>
                     <button type="submit" class="btn" id="submitBtn">Send Message</button>
                 </form>
@@ -348,7 +348,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             });
             
             try {
-                const response = await fetch('/style-rwanda/api/contact-send.php', {
+                const response = await fetch('/api/contact-send.php', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

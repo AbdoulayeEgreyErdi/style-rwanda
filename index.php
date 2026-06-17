@@ -21,7 +21,6 @@ $shoes_products = getProducts(['category' => 'Shoes'], 4);
         h1, h2, h3 { font-family: 'Playfair Display', serif; }
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
         
-        /* Navigation */
         .navbar { background: #000; padding: 1rem 0; position: sticky; top: 0; z-index: 1000; }
         .nav-container { max-width: 1200px; margin: 0 auto; padding: 0 20px; display: flex; justify-content: space-between; align-items: center; }
         .nav-logo a { color: #D4AF37; font-size: 1.8rem; font-weight: 700; text-decoration: none; }
@@ -32,19 +31,16 @@ $shoes_products = getProducts(['category' => 'Shoes'], 4);
         .cart-count { position: absolute; top: -8px; right: -12px; background: #D4AF37; color: #000; border-radius: 50%; padding: 2px 6px; font-size: 12px; font-weight: bold; }
         .nav-toggle { display: none; font-size: 1.5rem; color: #fff; cursor: pointer; }
         
-        /* Hero */
         .hero { background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1445205170230-053b83016050?w=1920') center/cover; height: 500px; display: flex; align-items: center; justify-content: center; text-align: center; color: white; }
         .hero-content h1 { font-size: 3rem; margin-bottom: 1rem; }
         .hero-content p { font-size: 1.2rem; margin-bottom: 2rem; }
         
-        /* Buttons */
         .btn { display: inline-block; padding: 12px 30px; border-radius: 5px; text-decoration: none; font-weight: 600; transition: all 0.3s; cursor: pointer; border: none; }
         .btn-primary { background: #D4AF37; color: #000; }
         .btn-primary:hover { background: #000; color: #D4AF37; transform: translateY(-2px); }
         .btn-outline { border: 2px solid #D4AF37; color: #D4AF37; background: transparent; }
         .btn-outline:hover { background: #D4AF37; color: #000; }
         
-        /* Product Grid */
         .section-title { text-align: center; font-size: 2.5rem; margin-bottom: 3rem; }
         .section-title::after { content: ''; display: block; width: 60px; height: 3px; background: #D4AF37; margin: 10px auto 0; }
         .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 2rem; margin-bottom: 3rem; }
@@ -57,14 +53,11 @@ $shoes_products = getProducts(['category' => 'Shoes'], 4);
         .product-info h3 { font-size: 1.1rem; margin-bottom: 0.5rem; }
         .product-price { color: #D4AF37; font-size: 1.2rem; font-weight: bold; margin-bottom: 1rem; }
         
-        /* Newsletter */
         .newsletter { background: #000; color: white; padding: 4rem 0; text-align: center; margin-top: 2rem; }
         .newsletter-form { display: flex; max-width: 500px; margin: 1rem auto 0; gap: 1rem; }
         .newsletter-form input { flex: 1; padding: 12px; border: none; border-radius: 5px; }
-        .newsletter-form button { padding: 12px 30px; background: #D4AF37; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; transition: all 0.3s; }
-        .newsletter-form button:disabled { opacity: 0.5; cursor: not-allowed; }
+        .newsletter-form button { padding: 12px 30px; background: #D4AF37; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; }
         
-        /* Footer */
         .footer { background: #111; color: #999; padding: 3rem 0 1rem; margin-top: 2rem; }
         .footer-container { max-width: 1200px; margin: 0 auto; padding: 0 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; }
         .footer-section h3, .footer-section h4 { color: #D4AF37; margin-bottom: 1rem; }
@@ -73,12 +66,10 @@ $shoes_products = getProducts(['category' => 'Shoes'], 4);
         .social-links a:hover { color: #D4AF37; }
         .footer-bottom { text-align: center; padding-top: 2rem; margin-top: 2rem; border-top: 1px solid #333; }
         
-        /* Toast */
         .toast { position: fixed; bottom: 20px; right: 20px; padding: 12px 20px; background: #333; color: white; border-radius: 5px; z-index: 1000; display: none; }
         .toast.success { background: #28a745; }
         .toast.error { background: #dc3545; }
         
-        /* Responsive */
         @media (max-width: 768px) {
             .nav-toggle { display: block; }
             .nav-menu { display: none; position: absolute; top: 100%; left: 0; width: 100%; background: #000; flex-direction: column; padding: 1rem 0; gap: 1rem; }
@@ -93,15 +84,15 @@ $shoes_products = getProducts(['category' => 'Shoes'], 4);
 <body>
     <nav class="navbar">
         <div class="nav-container">
-            <div class="nav-logo"><a href="/style-rwanda/">Style Rwanda</a></div>
+            <div class="nav-logo"><a href="/">Style Rwanda</a></div>
             <div class="nav-toggle" id="navToggle"><i class="fas fa-bars"></i></div>
             <ul class="nav-menu" id="navMenu">
-                <li><a href="/style-rwanda/">Home</a></li>
-                <li><a href="/style-rwanda/shop.php">Shop</a></li>
-                <li><a href="/style-rwanda/shop.php?new=1">New Arrivals</a></li>
-                <li><a href="/style-rwanda/contact.php">Contact</a></li>
-                <li><a href="/style-rwanda/account.php"><i class="fas fa-user"></i> Account</a></li>
-                <li class="cart-link"><a href="/style-rwanda/cart.php"><i class="fas fa-shopping-cart"></i><span class="cart-count" id="cartCount"><?php echo getCartCount(); ?></span></a></li>
+                <li><a href="/">Home</a></li>
+                <li><a href="/shop.php">Shop</a></li>
+                <li><a href="/shop.php?new=1">New Arrivals</a></li>
+                <li><a href="/contact.php">Contact</a></li>
+                <li><a href="/account.php"><i class="fas fa-user"></i> Account</a></li>
+                <li class="cart-link"><a href="/cart.php"><i class="fas fa-shopping-cart"></i><span class="cart-count" id="cartCount"><?php echo getCartCount(); ?></span></a></li>
             </ul>
         </div>
     </nav>
@@ -110,7 +101,7 @@ $shoes_products = getProducts(['category' => 'Shoes'], 4);
         <div class="hero-content">
             <h1>Elevate Your Style</h1>
             <p>Discover premium fashion inspired by Rwandan elegance</p>
-            <a href="/style-rwanda/shop.php" class="btn btn-primary">Shop Now</a>
+            <a href="/shop.php" class="btn btn-primary">Shop Now</a>
         </div>
     </section>
 
@@ -123,7 +114,7 @@ $shoes_products = getProducts(['category' => 'Shoes'], 4);
                 <div class="product-info">
                     <h3><?php echo $product['name']; ?></h3>
                     <p class="product-price"><?php echo formatPrice($product['price']); ?></p>
-                    <a href="/style-rwanda/product-detail.php?slug=<?php echo $product['slug']; ?>" class="btn btn-outline">View Details</a>
+                    <a href="/product-detail.php?slug=<?php echo $product['slug']; ?>" class="btn btn-outline">View Details</a>
                 </div>
             </div>
             <?php endforeach; ?>
@@ -137,13 +128,12 @@ $shoes_products = getProducts(['category' => 'Shoes'], 4);
                 <div class="product-info">
                     <h3><?php echo $product['name']; ?></h3>
                     <p class="product-price"><?php echo formatPrice($product['price']); ?></p>
-                    <a href="/style-rwanda/product-detail.php?slug=<?php echo $product['slug']; ?>" class="btn btn-outline">Shop Now</a>
+                    <a href="/product-detail.php?slug=<?php echo $product['slug']; ?>" class="btn btn-outline">Shop Now</a>
                 </div>
             </div>
             <?php endforeach; ?>
         </div>
 
-        <!-- Shoes Collection Section -->
         <h2 class="section-title">👟 Shoes Collection</h2>
         <div class="product-grid">
             <?php if (empty($shoes_products)): ?>
@@ -155,7 +145,7 @@ $shoes_products = getProducts(['category' => 'Shoes'], 4);
                     <div class="product-info">
                         <h3><?php echo $product['name']; ?></h3>
                         <p class="product-price"><?php echo formatPrice($product['price']); ?></p>
-                        <a href="/style-rwanda/product-detail.php?slug=<?php echo $product['slug']; ?>" class="btn btn-outline">Shop Now</a>
+                        <a href="/product-detail.php?slug=<?php echo $product['slug']; ?>" class="btn btn-outline">Shop Now</a>
                     </div>
                 </div>
                 <?php endforeach; ?>
@@ -188,10 +178,10 @@ $shoes_products = getProducts(['category' => 'Shoes'], 4);
             <div class="footer-section">
                 <h4>Quick Links</h4>
                 <ul>
-                    <li><a href="/style-rwanda/shop.php">Shop</a></li>
-                    <li><a href="/style-rwanda/about.php">About Us</a></li>
-                    <li><a href="/style-rwanda/contact.php">Contact</a></li>
-                    <li><a href="/style-rwanda/returns.php">Returns Policy</a></li>
+                    <li><a href="/shop.php">Shop</a></li>
+                    <li><a href="/about.php">About Us</a></li>
+                    <li><a href="/contact.php">Contact</a></li>
+                    <li><a href="/returns.php">Returns Policy</a></li>
                 </ul>
             </div>
             <div class="footer-section">
@@ -209,12 +199,10 @@ $shoes_products = getProducts(['category' => 'Shoes'], 4);
     <div id="toast" class="toast"></div>
 
     <script>
-        // Mobile menu toggle
         document.getElementById('navToggle')?.addEventListener('click', () => { 
             document.getElementById('navMenu')?.classList.toggle('active'); 
         });
         
-        // Toast notification
         function showToast(msg, type) { 
             const t = document.getElementById('toast'); 
             t.textContent = msg; 
@@ -223,7 +211,6 @@ $shoes_products = getProducts(['category' => 'Shoes'], 4);
             setTimeout(() => t.style.display = 'none', 3000); 
         }
         
-        // Newsletter form with API call
         document.getElementById('newsletterForm')?.addEventListener('submit', async (e) => {
             e.preventDefault();
             
@@ -241,11 +228,9 @@ $shoes_products = getProducts(['category' => 'Shoes'], 4);
             button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Subscribing...';
             
             try {
-                const response = await fetch('/style-rwanda/api/subscribe-newsletter.php', {
+                const response = await fetch('/api/subscribe-newsletter.php', {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
+                    headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ email: email })
                 });
                 

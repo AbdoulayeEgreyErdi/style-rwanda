@@ -103,7 +103,6 @@ usort($categories, function($a, $b) {
         .pagination a { padding: 8px 15px; border: 1px solid #ddd; text-decoration: none; color: #333; border-radius: 5px; }
         .pagination a:hover, .pagination a.active { background: #D4AF37; color: #000; border-color: #D4AF37; }
         
-        /* Category icon styling */
         .category-icon { margin-right: 8px; }
         .category-shoes { color: #D4AF37; }
         
@@ -121,15 +120,15 @@ usort($categories, function($a, $b) {
 <body>
     <nav class="navbar">
         <div class="nav-container">
-            <div class="nav-logo"><a href="/style-rwanda/">Style Rwanda</a></div>
+            <div class="nav-logo"><a href="/">Style Rwanda</a></div>
             <div class="nav-toggle" id="navToggle"><i class="fas fa-bars"></i></div>
             <ul class="nav-menu" id="navMenu">
-                <li><a href="/style-rwanda/">Home</a></li>
-                <li><a href="/style-rwanda/shop.php">Shop</a></li>
-                <li><a href="/style-rwanda/shop.php?new=1">New Arrivals</a></li>
-                <li><a href="/style-rwanda/contact.php">Contact</a></li>
-                <li><a href="/style-rwanda/account.php"><i class="fas fa-user"></i> Account</a></li>
-                <li class="cart-link"><a href="/style-rwanda/cart.php"><i class="fas fa-shopping-cart"></i><span class="cart-count"><?php echo getCartCount(); ?></span></a></li>
+                <li><a href="/">Home</a></li>
+                <li><a href="/shop.php">Shop</a></li>
+                <li><a href="/shop.php?new=1">New Arrivals</a></li>
+                <li><a href="/contact.php">Contact</a></li>
+                <li><a href="/account.php"><i class="fas fa-user"></i> Account</a></li>
+                <li class="cart-link"><a href="/cart.php"><i class="fas fa-shopping-cart"></i><span class="cart-count"><?php echo getCartCount(); ?></span></a></li>
             </ul>
         </div>
     </nav>
@@ -170,7 +169,7 @@ usort($categories, function($a, $b) {
                         <div class="product-info">
                             <h3><?php echo $product['name']; ?></h3>
                             <p class="product-price"><?php echo formatPrice($product['price']); ?></p>
-                            <a href="/style-rwanda/product-detail.php?slug=<?php echo $product['slug']; ?>" class="btn btn-outline">View Details</a>
+                            <a href="/product-detail.php?slug=<?php echo $product['slug']; ?>" class="btn btn-outline">View Details</a>
                         </div>
                     </div>
                     <?php endforeach; ?>

@@ -224,15 +224,15 @@ function getPaymentStatusBadge($status) {
 <body>
     <nav class="navbar">
         <div class="nav-container">
-            <div class="nav-logo"><a href="/style-rwanda/">Style Rwanda</a></div>
+            <div class="nav-logo"><a href="/">Style Rwanda</a></div>
             <div class="nav-toggle" id="navToggle"><i class="fas fa-bars"></i></div>
             <ul class="nav-menu" id="navMenu">
-                <li><a href="/style-rwanda/">Home</a></li>
-                <li><a href="/style-rwanda/shop.php">Shop</a></li>
-                <li><a href="/style-rwanda/shop.php?new=1">New Arrivals</a></li>
-                <li><a href="/style-rwanda/contact.php">Contact</a></li>
-                <li><a href="/style-rwanda/account.php">Account</a></li>
-                <li class="cart-link"><a href="/style-rwanda/cart.php"><i class="fas fa-shopping-cart"></i><span class="cart-count"><?php echo getCartCount(); ?></span></a></li>
+                <li><a href="/">Home</a></li>
+                <li><a href="/shop.php">Shop</a></li>
+                <li><a href="/shop.php?new=1">New Arrivals</a></li>
+                <li><a href="/contact.php">Contact</a></li>
+                <li><a href="/account.php">Account</a></li>
+                <li class="cart-link"><a href="/cart.php"><i class="fas fa-shopping-cart"></i><span class="cart-count"><?php echo getCartCount(); ?></span></a></li>
             </ul>
         </div>
     </nav>
@@ -247,7 +247,7 @@ function getPaymentStatusBadge($status) {
                     <a href="?logout=1" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</a>
                     
                     <?php if ($_SESSION['user_role'] === 'admin'): ?>
-                        <p style="margin-top: 1rem;"><a href="/style-rwanda/admin/" style="color:#D4AF37;">Go to Admin Panel →</a></p>
+                        <p style="margin-top: 1rem;"><a href="/admin/" style="color:#D4AF37;">Go to Admin Panel →</a></p>
                     <?php endif; ?>
                     
                     <!-- Orders Section -->
@@ -329,7 +329,7 @@ function getPaymentStatusBadge($status) {
                         <button type="submit" name="login" class="btn-primary">Login</button>
                     </form>
                     
-                    <!-- FORGOT PASSWORD LINK - ADDED HERE -->
+                    <!-- FORGOT PASSWORD LINK -->
                     <p style="text-align: center; margin-top: 10px;">
                         <a href="forgot-password.php" style="color: #D4AF37; font-size: 12px;">Forgot Password?</a>
                     </p>

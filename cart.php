@@ -70,12 +70,12 @@ $total = $subtotal + $shipping;
 <body>
     <nav class="navbar">
         <div class="nav-container">
-            <div class="nav-logo"><a href="/style-rwanda/">Style Rwanda</a></div>
+            <div class="nav-logo"><a href="/">Style Rwanda</a></div>
             <ul class="nav-menu">
-                <li><a href="/style-rwanda/">Home</a></li>
-                <li><a href="/style-rwanda/shop.php">Shop</a></li>
-                <li><a href="/style-rwanda/contact.php">Contact</a></li>
-                <li class="cart-link"><a href="/style-rwanda/cart.php"><i class="fas fa-shopping-cart"></i><span class="cart-count"><?php echo getCartCount(); ?></span></a></li>
+                <li><a href="/">Home</a></li>
+                <li><a href="/shop.php">Shop</a></li>
+                <li><a href="/contact.php">Contact</a></li>
+                <li class="cart-link"><a href="/cart.php"><i class="fas fa-shopping-cart"></i><span class="cart-count"><?php echo getCartCount(); ?></span></a></li>
             </ul>
         </div>
     </nav>
@@ -134,7 +134,7 @@ $total = $subtotal + $shipping;
         
         async function updateCart(key, quantity) {
             try {
-                const res = await fetch('/style-rwanda/api/cart-update.php', {
+                const res = await fetch('/api/cart-update.php', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ key: key, quantity: quantity })
@@ -152,7 +152,7 @@ $total = $subtotal + $shipping;
         
         async function removeItem(key) {
             try {
-                const res = await fetch('/style-rwanda/api/cart-remove.php', {
+                const res = await fetch('/api/cart-remove.php', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ key: key })
