@@ -55,6 +55,7 @@ $csrf_token = generateCSRFToken();
         
         .btn-primary { width: 100%; background: #D4AF37; color: #000; padding: 1rem; border: none; border-radius: 8px; font-size: 1rem; font-weight: 600; cursor: pointer; margin-top: 1rem; transition: all 0.3s; }
         .btn-primary:hover { background: #000; color: #D4AF37; transform: translateY(-2px); }
+        .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
         
         .footer { background: #111; color: #999; padding: 2rem 0; text-align: center; margin-top: 2rem; }
         
@@ -73,15 +74,15 @@ $csrf_token = generateCSRFToken();
 <body>
     <nav class="navbar">
         <div class="nav-container">
-            <div class="nav-logo"><a href="/style-rwanda/">Style Rwanda</a></div>
+            <div class="nav-logo"><a href="/">Style Rwanda</a></div>
             <div class="nav-toggle" id="navToggle"><i class="fas fa-bars"></i></div>
             <ul class="nav-menu" id="navMenu">
-                <li><a href="/style-rwanda/">Home</a></li>
-                <li><a href="/style-rwanda/shop.php">Shop</a></li>
-                <li><a href="/style-rwanda/shop.php?new=1">New Arrivals</a></li>
-                <li><a href="/style-rwanda/contact.php">Contact</a></li>
-                <li><a href="/style-rwanda/account.php">Account</a></li>
-                <li class="cart-link"><a href="/style-rwanda/cart.php"><i class="fas fa-shopping-cart"></i><span class="cart-count"><?php echo getCartCount(); ?></span></a></li>
+                <li><a href="/">Home</a></li>
+                <li><a href="/shop.php">Shop</a></li>
+                <li><a href="/shop.php?new=1">New Arrivals</a></li>
+                <li><a href="/contact.php">Contact</a></li>
+                <li><a href="/account.php"><i class="fas fa-user"></i> Account</a></li>
+                <li class="cart-link"><a href="/cart.php"><i class="fas fa-shopping-cart"></i><span class="cart-count"><?php echo getCartCount(); ?></span></a></li>
             </ul>
         </div>
     </nav>
@@ -179,6 +180,7 @@ $csrf_token = generateCSRFToken();
             }, 3000);
         }
         
+        // ========== FIXED: Checkout Form ==========
         document.getElementById('checkoutForm')?.addEventListener('submit', async function(e) {
             e.preventDefault();
             
@@ -199,7 +201,8 @@ $csrf_token = generateCSRFToken();
             submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
             
             try {
-                const response = await fetch('/style-rwanda/api/place-order.php', {
+                // ✅ FIXED: Removed /style-rwanda/ from URL
+                const response = await fetch('/api/place-order.php', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -212,7 +215,7 @@ $csrf_token = generateCSRFToken();
                 if (result.success) {
                     showToast('Order placed successfully! Redirecting...', 'success');
                     setTimeout(() => {
-                        window.location.href = '/style-rwanda/order-confirmation.php?order_id=' + result.order_id;
+                        window.location.href = '/order-confirmation.php?order_id=' + result.order_id;
                     }, 1500);
                 } else {
                     showToast(result.error || 'Error placing order', 'error');
