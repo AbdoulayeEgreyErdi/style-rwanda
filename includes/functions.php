@@ -74,7 +74,7 @@ function formatDate($date, $format = 'M d, Y') {
     return date($format, strtotime($date));
 }
 
-// ========== PRODUCT FUNCTIONS (SQLite Compatible) ==========
+// ========== PRODUCT FUNCTIONS (MySQL Compatible) ==========
 function getProducts($filters = [], $limit = null, $offset = 0) {
     global $pdo;
     
@@ -85,9 +85,9 @@ function getProducts($filters = [], $limit = null, $offset = 0) {
         $sql .= " AND is_featured = 1";
     }
     
-    // SQLite compatible date filtering (FIXED)
+    // MySQL compatible date filtering (FIXED)
     if (isset($filters['new']) && $filters['new']) {
-        $sql .= " AND (is_new = 1 OR datetime(created_at) > datetime('now', '-30 days'))";
+        $sql .= " AND (is_new = 1 OR created_at > DATE_SUB(NOW(), INTERVAL 30 DAY))";
     }
     
     if (isset($filters['category']) && $filters['category']) {
